@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apex Automotive | Premium Gebrauchtwagen mit Konfigurator</title>
+<meta name="description" content="Premium-Gebrauchtwagen von Mercedes-Benz, Audi und Volkswagen – geprüft, veredelt und perfekt auf Sie abgestimmt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<script>
+tailwind.config = {
+  theme: { extend: {
+    fontFamily: { display: ['"Space Grotesk"', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
+    colors: { ink: '#07080b', coal: '#0f1116', slate: '#171a21', edge: '#252a34', neon: '#29b6ff', silver: '#c9cfd8' }
+  } }
+}
+</script>
+<style>
+  body { background:#07080b; color:#c9cfd8; }
+  .glow { box-shadow: 0 0 0 1px rgba(41,182,255,.55), 0 0 28px rgba(41,182,255,.18); }
+  .hero-bg { background:
+    radial-gradient(60% 50% at 75% 20%, rgba(41,182,255,.16), transparent 70%),
+    linear-gradient(180deg, rgba(7,8,11,.55), #07080b 96%),
+    url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=80') center/cover #0f1116; }
+  .opt { transition: border-color .2s, background .2s; }
+  .opt[aria-pressed="true"] { border-color:#29b6ff; background:rgba(41,182,255,.08); color:#fff; }
+  .opt:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline:2px solid #29b6ff; outline-offset:2px; }
+  .check:checked { background:#29b6ff; border-color:#29b6ff; }
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior:auto !important; transition:none !important; } }
+</style>
+</head>
+<body class="font-sans antialiased">
+
+<!-- NAVIGATION -->
+<header class="fixed inset-x-0 top-0 z-50 border-b border-edge/70 bg-ink/85 backdrop-blur-md">
+  <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-5" aria-label="Hauptnavigation">
+    <a href="#home" class="font-display text-xl font-bold tracking-[.28em] text-white">APEX<span class="text-neon"> AUTOMOTIVE</span></a>
+    <ul class="hidden items-center gap-8 text-sm md:flex">
+      <li><a class="hover:text-white" href="#home">Home</a></li>
+      <li><a class="hover:text-white" href="#fahrzeuge">Fahrzeuge</a></li>
+      <li><a class="hover:text-white" href="#konfigurator">Konfigurator</a></li>
+      <li><a class="hover:text-white" href="#ueber-uns">Über Uns</a></li>
+      <li><a class="rounded-full border border-neon px-4 py-1.5 text-neon hover:bg-neon hover:text-ink" href="#kontakt">Kontakt</a></li>
+    </ul>
+    <button id="menuBtn" class="md:hidden rounded-lg border border-edge p-2 text-white" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
+      <i data-lucide="menu" id="menuIcon" class="h-6 w-6"></i>
+    </button>
+  </nav>
+  <div id="mobileMenu" class="hidden border-t border-edge bg-coal md:hidden">
+    <ul class="flex flex-col px-5 py-3 text-base">
+      <li><a class="mm block py-3 hover:text-white" href="#home">Home</a></li>
+      <li><a class="mm block py-3 hover:text-white" href="#fahrzeuge">Fahrzeuge</a></li>
+      <li><a class="mm block py-3 hover:text-white" href="#konfigurator">Konfigurator</a></li>
+      <li><a class="mm block py-3 hover:text-white" href="#ueber-uns">Über Uns</a></li>
+      <li><a class="mm block py-3 text-neon" href="#kontakt">Kontakt</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section id="home" class="hero-bg flex min-h-screen items-end pb-20 pt-32 sm:items-center sm:pb-0">
+  <div class="mx-auto w-full max-w-7xl px-5">
+    <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-edge bg-coal/70 px-4 py-1.5 text-xs text-silver"><i data-lucide="shield-check" class="h-4 w-4 text-neon"></i> Hauseigene Werkstatt · Geprüfte Gebrauchtwagen</p>
+    <h1 class="max-w-3xl font-display text-4xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-7xl">Traumwagen nicht nur finden. Perfekt abstimmen.</h1>
+    <p class="mt-6 max-w-xl text-base leading-relaxed text-silver sm:text-lg">Gebrauchtwagen mit Neuwagen-Konfigurations-Feeling: Sie wählen ein Fahrzeug, das wirklich bei uns steht, und veredeln es in unserer Werkstatt – von Felgen bis Sternenhimmel.</p>
+    <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+      <a href="#fahrzeuge" class="rounded-full bg-white px-7 py-3.5 text-center font-semibold text-ink hover:bg-silver">Fahrzeuge entdecken</a>
+      <a href="#konfigurator" class="glow rounded-full bg-neon/10 px-7 py-3.5 text-center font-semibold text-neon hover:bg-neon hover:text-ink">Konfigurator starten</a>
+    </div>
+  </div>
+</section>
+
+<!-- KONFIGURATOR -->
+<section id="konfigurator" class="scroll-mt-16 bg-coal py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-5">
+    <h2 class="font-display text-3xl font-bold text-white sm:text-5xl">Ihr Apex-Konfigurator</h2>
+    <p class="mt-4 max-w-2xl text-silver">Jedes Fahrzeug hier steht real in unserem Bestand. Wählen Sie Marke und Modell, buchen Sie Veredelungen dazu und sehen Sie den Gesamtpreis sofort.</p>
+
+    <div class="mt-12 grid gap-8 lg:grid-cols-5">
+      <div class="space-y-8 lg:col-span-2">
+        <div>
+          <h3 class="mb-3 flex items-center gap-3 font-display text-lg text-white"><span class="flex h-7 w-7 items-center justify-center rounded-full bg-neon text-sm font-bold text-ink">1</span> Marke wählen</h3>
+          <div id="brands" class="grid grid-cols-1 gap-2 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3"></div>
+        </div>
+        <div>
+          <h3 class="mb-3 flex items-center gap-3 font-display text-lg text-white"><span class="flex h-7 w-7 items-center justify-center rounded-full bg-neon text-sm font-bold text-ink">2</span> Modell wählen</h3>
+          <div id="models" class="grid grid-cols-1 gap-2 sm:grid-cols-2"></div>
+          <p id="modelHint" class="text-sm text-silver/70">Bitte zuerst eine Marke wählen.</p>
+        </div>
+        <div>
+          <h3 class="mb-3 flex items-center gap-3 font-display text-lg text-white"><span class="flex h-7 w-7 items-center justify-center rounded-full bg-neon text-sm font-bold text-ink">3</span> Werkstatt-Upgrades</h3>
+          <div id="upgrades" class="space-y-2"></div>
+        </div>
+      </div>
+
+      <!-- Vorschau -->
+      <div class="lg:col-span-3">
+        <div class="sticky top-24 overflow-hidden rounded-2xl border border-edge bg-ink">
+          <div class="relative aspect-[16/10] bg-slate">
+            <img id="pvImg" alt="" class="absolute inset-0 hidden h-full w-full object-cover">
+            <div id="pvEmpty" class="absolute inset-0 flex flex-col items-center justify-center gap-3 text-silver/60">
+              <i data-lucide="car-front" class="h-14 w-14"></i><span>Ihr Fahrzeug erscheint hier</span>
+            </div>
+            <div id="pvBadges" class="absolute left-3 top-3 flex flex-wrap gap-2"></div>
+          </div>
+          <div class="p-6">
+            <h3 id="pvTitle" class="font-display text-2xl font-bold text-white">Noch kein Fahrzeug gewählt</h3>
+            <dl id="pvSpecs" class="mt-4 hidden grid-cols-3 gap-3 text-sm">
+              <div class="rounded-xl bg-coal p-3"><dt class="text-xs text-silver/70">Erstzulassung</dt><dd id="pvYear" class="mt-1 font-semibold text-white"></dd></div>
+              <div class="rounded-xl bg-coal p-3"><dt class="text-xs text-silver/70">Kilometerstand</dt><dd id="pvKm" class="mt-1 font-semibold text-white"></dd></div>
+              <div class="rounded-xl bg-coal p-3"><dt class="text-xs text-silver/70">Leistung</dt><dd id="pvPs" class="mt-1 font-semibold text-white"></dd></div>
+            </dl>
+            <ul id="pvList" class="mt-5 space-y-1 text-sm"></ul>
+            <div class="mt-6 flex flex-col gap-4 border-t border-edge pt-6 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p class="text-xs text-silver/70">Gesamtpreis inkl. Veredelung</p>
+                <p id="total" class="font-display text-4xl font-bold text-white">–</p>
+                <p id="extraSum" class="text-sm text-neon"></p>
+              </div>
+              <button id="reserveBtn" disabled class="rounded-full bg-neon px-6 py-3.5 font-semibold text-ink disabled:cursor-not-allowed disabled:bg-edge disabled:text-silver/50">Probefahrt &amp; Reservierung anfragen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BESTAND -->
+<section id="fahrzeuge" class="scroll-mt-16 py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-5">
+    <h2 class="font-display text-3xl font-bold text-white sm:text-5xl">Aktueller Bestand</h2>
+    <p class="mt-4 max-w-2xl text-silver">Sechs ausgewählte Fahrzeuge, jedes durch unsere Werkstatt geprüft und sofort verfügbar.</p>
+    <div id="cards" class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"></div>
+  </div>
+</section>
+
+<!-- WERKSTATT -->
+<section id="ueber-uns" class="scroll-mt-16 border-y border-edge bg-coal py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-5">
+    <div class="max-w-2xl">
+      <h2 class="font-display text-3xl font-bold text-white sm:text-5xl">Das Apex-Werkstatt- &amp; Qualitätssystem</h2>
+      <p class="mt-4 text-silver">Wir verkaufen keine Autos von der Stange. Jedes Fahrzeug durchläuft unsere eigene Meisterwerkstatt – bevor und nachdem Sie Ihre Wünsche festlegen.</p>
+    </div>
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      <article class="rounded-2xl border border-edge bg-ink p-7">
+        <i data-lucide="clipboard-check" class="h-9 w-9 text-neon"></i>
+        <h3 class="mt-5 font-display text-xl text-white">150-Punkte-Qualitätscheck</h3>
+        <p class="mt-3 text-sm leading-relaxed">Fahrwerk, Antrieb, Elektronik und Karosserie werden dokumentiert geprüft. Verschleißteile tauschen wir vor dem Verkauf.</p>
+      </article>
+      <article class="rounded-2xl border border-edge bg-ink p-7">
+        <i data-lucide="wrench" class="h-9 w-9 text-neon"></i>
+        <h3 class="mt-5 font-display text-xl text-white">Individuelle Nachrüstung</h3>
+        <p class="mt-3 text-sm leading-relaxed">Felgen, Sternenhimmel, De-Chrome oder Klappenauspuff: Unsere Techniker bauen Ihre Wunschausstattung fachgerecht ein.</p>
+      </article>
+      <article class="rounded-2xl border border-edge bg-ink p-7">
+        <i data-lucide="sparkles" class="h-9 w-9 text-neon"></i>
+        <h3 class="mt-5 font-display text-xl text-white">Aufbereitung vor Übergabe</h3>
+        <p class="mt-3 text-sm leading-relaxed">Lackveredelung, Innenraum-Tiefenreinigung und Keramikversiegelung – Sie übernehmen ein Fahrzeug im Neuwagen-Zustand.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt" class="scroll-mt-16 py-20 sm:py-28">
+  <div class="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-2">
+    <div>
+      <h2 class="font-display text-3xl font-bold text-white sm:text-5xl">Kontakt &amp; Reservierung</h2>
+      <p class="mt-4 max-w-md text-silver">Fragen Sie Ihre Probefahrt an oder lassen Sie sich persönlich zur Veredelung beraten. Wir melden uns innerhalb eines Werktags.</p>
+      <ul class="mt-8 space-y-5">
+        <li class="flex gap-4"><i data-lucide="map-pin" class="mt-0.5 h-5 w-5 shrink-0 text-neon"></i><span><strong class="block text-white">Showroom &amp; Werkstatt</strong>Königsallee 88, 40212 Düsseldorf</span></li>
+        <li class="flex gap-4"><i data-lucide="clock" class="mt-0.5 h-5 w-5 shrink-0 text-neon"></i><span><strong class="block text-white">Öffnungszeiten</strong>Mo–Fr 09:00–19:00 Uhr · Sa 10:00–16:00 Uhr</span></li>
+        <li class="flex gap-4"><i data-lucide="phone" class="mt-0.5 h-5 w-5 shrink-0 text-neon"></i><span><strong class="block text-white">Telefon</strong><a class="hover:text-white" href="tel:+4921100000000">+49 211 000 000 00</a></span></li>
+        <li class="flex gap-4"><i data-lucide="mail" class="mt-0.5 h-5 w-5 shrink-0 text-neon"></i><span><strong class="block text-white">E-Mail</strong><a class="hover:text-white" href="mailto:info@apex-automotive.de">info@apex-automotive.de</a></span></li>
+      </ul>
+    </div>
+    <form id="contactForm" class="space-y-4 rounded-2xl border border-edge bg-coal p-6 sm:p-8" novalidate>
+      <div><label for="name" class="mb-1.5 block text-sm text-white">Name</label><input id="name" required autocomplete="name" class="w-full rounded-xl border border-edge bg-ink px-4 py-3 text-white placeholder-silver/40" placeholder="Max Mustermann"></div>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div><label for="tel" class="mb-1.5 block text-sm text-white">Telefon</label><input id="tel" type="tel" autocomplete="tel" class="w-full rounded-xl border border-edge bg-ink px-4 py-3 text-white placeholder-silver/40" placeholder="0171 1234567"></div>
+        <div><label for="mail" class="mb-1.5 block text-sm text-white">E-Mail</label><input id="mail" type="email" required autocomplete="email" class="w-full rounded-xl border border-edge bg-ink px-4 py-3 text-white placeholder-silver/40" placeholder="max@beispiel.de"></div>
+      </div>
+      <div><label for="msg" class="mb-1.5 block text-sm text-white">Nachricht</label><textarea id="msg" rows="7" required class="w-full rounded-xl border border-edge bg-ink px-4 py-3 text-white placeholder-silver/40" placeholder="Wie können wir helfen?"></textarea></div>
+      <p id="formErr" class="hidden text-sm text-red-400"></p>
+      <button class="w-full rounded-full bg-neon px-6 py-3.5 font-semibold text-ink hover:bg-white">Anfrage senden</button>
+      <p id="formOk" class="hidden rounded-xl border border-neon/50 bg-neon/10 p-4 text-sm text-white" role="status">Danke! Ihre Anfrage ist bei uns eingegangen. Wir melden uns innerhalb eines Werktags.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="border-t border-edge bg-coal">
+  <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-5 py-8 text-sm md:flex-row">
+    <p>© <span id="yr">2026</span> Apex Automotive GmbH. Alle Rechte vorbehalten.</p>
+    <div class="flex items-center gap-5">
+      <a href="#" aria-label="Instagram" class="hover:text-white"><i data-lucide="instagram" class="h-5 w-5"></i></a>
+      <a href="#" aria-label="Facebook" class="hover:text-white"><i data-lucide="facebook" class="h-5 w-5"></i></a>
+      <a href="#" aria-label="YouTube" class="hover:text-white"><i data-lucide="youtube" class="h-5 w-5"></i></a>
+    </div>
+    <div class="flex gap-5"><a href="#" class="hover:text-white">Impressum</a><a href="#" class="hover:text-white">Datenschutz</a></div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var U = function (id) { return 'https://images.unsplash.com/' + id + '?auto=format&fit=crop&w=1200&q=80'; };
+  var CARS = [
+    { id:'s500', brand:'Mercedes-Benz', model:'S 500', year:'03/2019', km:62000, ps:435, price:79900, img:U('photo-1618843479313-40f8afb4b4d8') },
+    { id:'c63',  brand:'Mercedes-Benz', model:'C 63 AMG', year:'06/2018', km:48000, ps:476, price:64900, img:U('photo-1553440569-bcc63803a83d') },
+    { id:'rs6',  brand:'Audi', model:'RS6 Avant', year:'09/2020', km:41000, ps:600, price:109900, img:U('photo-1606664515524-ed2f786a0bd6') },
+    { id:'a5',   brand:'Audi', model:'A5 Sportback', year:'02/2021', km:29000, ps:204, price:39900, img:U('photo-1492144534655-ae79c964c9d7') },
+    { id:'golf', brand:'Volkswagen', model:'Golf 8 R', year:'05/2022', km:22000, ps:320, price:49900, img:U('photo-1541899481282-d53bffe3c35d') },
+    { id:'pas',  brand:'Volkswagen', model:'Passat B8', year:'11/2019', km:71000, ps:190, price:24900, img:U('photo-1503376780353-7e6692767b70') }
+  ];
+  var UPG = [
+    { id:'rim', label:'19/20-Zoll Performance-Felgen', sub:'Schmiedefelgen im Originaldesign der Marke', price:1200 },
+    { id:'sky', label:'Sternenhimmel-Innenraum', sub:'Handverlegte Glasfaser-Lichtpunkte', price:900 },
+    { id:'dch', label:'De-Chrome Nachtpaket', sub:'Chromteile in Hochglanz-Schwarz', price:450 },
+    { id:'exh', label:'Auspuff-Klappensteuerung', sub:'Sound per Fernbedienung regeln', price:850 }
+  ];
+  var BRANDS = ['Mercedes-Benz', 'Audi', 'Volkswagen'];
+  var st = { brand:null, car:null, up:{} };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var eur = function (n) { return n.toLocaleString('de-DE') + ' €'; };
+  var km = function (n) { return n.toLocaleString('de-DE') + ' km'; };
+  var icons = function () { if (window.lucide) lucide.createIcons(); };
+  var el = function (tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html) e.innerHTML = html; return e; };
+
+  /* Mobile-Menü */
+  var mb = $('menuBtn'), mm = $('mobileMenu');
+  function toggleMenu(open) {
+    mm.classList.toggle('hidden', !open);
+    mb.setAttribute('aria-expanded', open);
+    mb.innerHTML = '<i data-lucide="' + (open ? 'x' : 'menu') + '" class="h-6 w-6"></i>';
+    icons();
+  }
+  mb.addEventListener('click', function () { toggleMenu(mm.classList.contains('hidden')); });
+  document.querySelectorAll('.mm').forEach(function (a) { a.addEventListener('click', function () { toggleMenu(false); }); });
+
+  /* Bild mit Fallback */
+  function imgFallback(img, car) {
+    img.onerror = function () {
+      var p = img.parentNode, f = el('div', 'absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate to-ink font-display text-xl text-silver', car.brand + ' ' + car.model);
+      img.style.display = 'none'; p.insertBefore(f, img);
+    };
+  }
+
+  /* Schritt 1 */
+  function renderBrands() {
+    var box = $('brands'); box.innerHTML = '';
+    BRANDS.forEach(function (b) {
+      var btn = el('button', 'opt rounded-xl border border-edge bg-ink px-4 py-3 text-left font-medium', b);
+      btn.type = 'button'; btn.setAttribute('aria-pressed', st.brand === b);
+      btn.onclick = function () { st.brand = b; st.car = null; renderBrands(); renderModels(); renderPreview(); };
+      box.appendChild(btn);
+    });
+  }
+  /* Schritt 2 – nur Modelle der gewählten Marke */
+  function renderModels() {
+    var box = $('models'); box.innerHTML = '';
+    $('modelHint').classList.toggle('hidden', !!st.brand);
+    CARS.filter(function (c) { return c.brand === st.brand; }).forEach(function (c) {
+      var btn = el('button', 'opt rounded-xl border border-edge bg-ink px-4 py-3 text-left', '<span class="block font-medium">' + c.model + '</span><span class="text-xs text-silver/70">' + c.ps + ' PS · ' + eur(c.price) + '</span>');
+      btn.type = 'button'; btn.setAttribute('aria-pressed', st.car === c);
+      btn.onclick = function () { st.car = c; renderModels(); renderPreview(); };
+      box.appendChild(btn);
+    });
+  }
+  /* Schritt 3 */
+  function renderUpgrades() {
+    var box = $('upgrades');
+    UPG.forEach(function (u) {
+      var lab = el('label', 'opt flex cursor-pointer items-center gap-3 rounded-xl border border-edge bg-ink p-3');
+      lab.innerHTML = '<input type="checkbox" class="check h-5 w-5 shrink-0 appearance-none rounded border border-silver/50"><span class="flex-1"><span class="block text-sm font-medium text-white">' + u.label + '</span><span class="text-xs text-silver/70">' + u.sub + '</span></span><span class="whitespace-nowrap text-sm font-semibold text-neon">+' + eur(u.price) + '</span>';
+      lab.querySelector('input').onchange = function (e) {
+        st.up[u.id] = e.target.checked; lab.setAttribute('aria-pressed', e.target.checked); renderPreview();
+      };
+      box.appendChild(lab);
+    });
+  }
+  /* Live-Vorschau & Preis */
+  function renderPreview() {
+    var c = st.car, img = $('pvImg');
+    var chosen = UPG.filter(function (u) { return st.up[u.id]; });
+    var extra = chosen.reduce(function (s, u) { return s + u.price; }, 0);
+    $('pvEmpty').classList.toggle('hidden', !!c);
+    $('pvSpecs').classList.toggle('hidden', !c); $('pvSpecs').classList.toggle('grid', !!c);
+    $('reserveBtn').disabled = !c;
+    if (!c) {
+      img.classList.add('hidden'); $('pvTitle').textContent = 'Noch kein Fahrzeug gewählt';
+      $('pvList').innerHTML = ''; $('pvBadges').innerHTML = ''; $('total').textContent = '–'; $('extraSum').textContent = ''; return;
+    }
+    if (img.getAttribute('data-id') !== c.id) {
+      var sib = img.previousElementSibling; if (sib && sib.id !== 'pvEmpty' && sib.tagName === 'DIV') sib.remove();
+      img.style.display = ''; imgFallback(img, c); img.src = c.img; img.alt = c.brand + ' ' + c.model; img.setAttribute('data-id', c.id);
+    }
+    img.classList.remove('hidden');
+    $('pvTitle').textContent = c.brand + ' ' + c.model;
+    $('pvYear').textContent = c.year; $('pvKm').textContent = km(c.km); $('pvPs').textContent = c.ps + ' PS';
+    $('pvBadges').innerHTML = chosen.map(function (u) { return '<span class="rounded-full bg-ink/80 px-3 py-1 text-xs text-white backdrop-blur">' + u.label.split(' ')[0] + '</span>'; }).join('');
+    $('pvList').innerHTML = '<li class="flex justify-between"><span>Fahrzeugpreis</span><span class="text-white">' + eur(c.price) + '</span></li>' +
+      chosen.map(function (u) { return '<li class="flex justify-between"><span>' + u.label + '</span><span class="text-neon">+' + eur(u.price) + '</span></li>'; }).join('');
+    $('total').textContent = eur(c.price + extra);
+    $('extraSum').textContent = extra ? 'davon Veredelung: ' + eur(extra) : '';
+  }
+
+  /* Bestand */
+  function renderCards() {
+    var box = $('cards');
+    CARS.forEach(function (c) {
+      var a = el('article', 'group overflow-hidden rounded-2xl border border-edge bg-coal transition hover:border-neon/60');
+      a.innerHTML = '<div class="relative aspect-[16/10] overflow-hidden bg-slate"><img loading="lazy" alt="' + c.brand + ' ' + c.model + '" src="' + c.img + '" class="h-full w-full object-cover transition duration-500 group-hover:scale-105"><span class="absolute left-3 top-3 rounded-full bg-ink/80 px-3 py-1 text-xs text-white backdrop-blur">' + c.brand + '</span></div>' +
+        '<div class="p-5"><h3 class="font-display text-xl font-semibold text-white">' + c.model + '</h3>' +
+        '<ul class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm"><li class="flex items-center gap-1.5"><i data-lucide="calendar" class="h-4 w-4 text-neon"></i>' + c.year + '</li><li class="flex items-center gap-1.5"><i data-lucide="gauge" class="h-4 w-4 text-neon"></i>' + km(c.km) + '</li><li class="flex items-center gap-1.5"><i data-lucide="zap" class="h-4 w-4 text-neon"></i>' + c.ps + ' PS</li></ul>' +
+        '<p class="mt-4 font-display text-2xl font-bold text-white">' + eur(c.price) + '</p>' +
+        '<button type="button" class="mt-4 w-full rounded-full border border-edge py-2.5 text-sm font-medium text-white hover:border-neon hover:text-neon">Im Konfigurator anpassen</button></div>';
+      imgFallback(a.querySelector('img'), c);
+      a.querySelector('button').onclick = function () {
+        st.brand = c.brand; st.car = c; renderBrands(); renderModels(); renderPreview();
+        $('konfigurator').scrollIntoView({ behavior: 'smooth' });
+      };
+      box.appendChild(a);
+    });
+  }
+
+  /* Reservierung → Formular vorausfüllen */
+  $('reserveBtn').onclick = function () {
+    var c = st.car; if (!c) return;
+    var chosen = UPG.filter(function (u) { return st.up[u.id]; });
+    var total = c.price + chosen.reduce(function (s, u) { return s + u.price; }, 0);
+    $('msg').value = 'Guten Tag, ich möchte eine Probefahrt und Reservierung anfragen:\n\nFahrzeug: ' + c.brand + ' ' + c.model + ' (' + c.year + ', ' + km(c.km) + ', ' + c.ps + ' PS)\nFahrzeugpreis: ' + eur(c.price) + '\nUpgrades: ' + (chosen.length ? chosen.map(function (u) { return u.label + ' (+' + eur(u.price) + ')'; }).join(', ') : 'keine') + '\nGesamtpreis: ' + eur(total) + '\n\nBitte um Rückmeldung zu einem Termin.';
+    $('kontakt').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(function () { $('name').focus({ preventScroll: true }); }, 600);
+  };
+
+  /* Formular */
+  $('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var err = $('formErr'), ok = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('mail').value.trim());
+    if (!$('name').value.trim() || !ok || !$('msg').value.trim()) {
+      err.textContent = 'Bitte geben Sie Name, eine gültige E-Mail-Adresse und eine Nachricht ein.'; err.classList.remove('hidden'); return;
+    }
+    err.classList.add('hidden'); $('formOk').classList.remove('hidden'); e.target.reset();
+  });
+
+  $('yr').textContent = new Date().getFullYear();
+  renderBrands(); renderModels(); renderUpgrades(); renderCards(); renderPreview(); icons();
+})();
+</script>
+</body>
+</html>
